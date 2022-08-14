@@ -10,6 +10,10 @@ describe('Color', () => {
         const color: Color = new Color('#807149');
         expect(Color.toDatabase(color)).toBe('#807149');
     });
+    test('should return null', () => {
+        const color: Color = new Color('');
+        expect(Color.toDatabase(color)).toBeNull();
+    });
     test('should return instance of Color', () => {
         expect(Color.fromDatabase('#807149')).toBeInstanceOf(Color);
     });
@@ -39,6 +43,15 @@ describe('Color', () => {
     test('should return instance of Color', () => {
         const color: Color = new Color('#807149');
         const rgb: RGB = Color.colorToRgb(color);
+
         expect(Color.rgbToColor(rgb)).toBeInstanceOf(Color);
+    });
+
+    test('should return correct color', () => {
+        const color: Color = new Color('#807149');
+        const rgb: RGB = Color.colorToRgb(color);
+        const colorFromRgb= Color.rgbToColor(rgb)
+        expect(colorFromRgb.toString()).toEqual('#807149');
+
     });
 });
